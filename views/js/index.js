@@ -53,6 +53,9 @@ $(document).ready(function () {
         },
       });
     },
+    onClose: function (e) {
+      console.log("closed >>>>>>>>", e);
+    },
   });
 });
 
