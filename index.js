@@ -95,6 +95,48 @@ app.get("/executeBkashPayment", async (req, res) => {
   res.send(executePaymentResult);
 });
 
+app.get("/queryBkashPayment", async (req, res) => {
+  const token = req.cookies.token;
+  const payment = req.cookies.payment;
+
+  const queryPaymentResponse = await fetch(
+    `https://checkout.sandbox.bka.sh/v1.2.0-beta/checkout/payment/query/${req.query.id}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        authorization: token.id_token,
+        "x-app-key": process.env.KEY,
+      },
+    }
+  );
+  const queryPaymentResult = await queryPaymentResponse.json();
+
+  res.send(queryPaymentResult);
+});
+
+app.get("/searchBkashTransaction", async (req, res) => {
+  const token = req.cookies.token;
+  const payment = req.cookies.payment;
+
+  const searchTransactionResponse = await fetch(
+    `https://checkout.sandbox.bka.sh/v1.2.0-beta/checkout/payment/search/${req.query.id}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        authorization: token.id_token,
+        "x-app-key": process.env.KEY,
+      },
+    }
+  );
+  const searchTransactionResult = await searchTransactionResponse.json();
+
+  res.send(searchTransactionResult);
+});
+
 app.listen(port, () =>
   console.log(`Example app listening at http://localhost:${port}`)
 );

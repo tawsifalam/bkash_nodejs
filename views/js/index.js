@@ -22,6 +22,7 @@ $(document).ready(function () {
         type: "GET",
         contentType: "application/json",
         success: function (data) {
+          console.log("create payment data >>>>>", data);
           if (data && data.paymentID != null) {
             paymentID = data.paymentID;
             bKash.create().onSuccess(data);
@@ -42,6 +43,7 @@ $(document).ready(function () {
         type: "GET",
         contentType: "application/json",
         success: function (data) {
+          console.log("execute payment data >>>>>", data);
           if (data && data.paymentID != null) {
             alert("[SUCCESS] data : " + JSON.stringify(data));
           } else {
