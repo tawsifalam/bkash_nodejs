@@ -57,9 +57,6 @@ app.get("/creatBkashPayment", async (req, res) => {
         "x-app-key": process.env.KEY,
       },
       body: JSON.stringify({
-        mode: "0011",
-        payerReference: "01770618575",
-        callbackURL: "zantrik.com",
         amount: "500",
         currency: "BDT",
         intent: "sale",
